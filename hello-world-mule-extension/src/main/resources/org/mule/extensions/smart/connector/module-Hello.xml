@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="Hello Smart Connector"
+        category="SELECT"
+        prefix="module-hello"
+        doc:description="This module relies in runtime provided components"
+
+        xmlns="http://www.mulesoft.org/schema/mule/module"
+        xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+        xmlns:mule="http://www.mulesoft.org/schema/mule/core"
+        xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+        xmlns:tns="http://www.mulesoft.org/schema/mule/module-hello"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mulesoft.org/schema/mule/module
+        http://www.mulesoft.org/schema/mule/module/current/mule-module.xsd
+        http://www.mulesoft.org/schema/mule/core
+        http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/ee/core
+        http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+        http://www.mulesoft.org/schema/mule/module-hello
+        http://www.mulesoft.org/schema/mule/module-hello/current/mule-module-hello.xsd">
+
+    <operation name="hello-world" doc:description="Sets the payload to the queryParams String value">
+        <parameters>
+            <parameter name="name" type="string" defaultValue="World" />
+        </parameters>
+        <body>
+            <ee:transform doc:name="Transform Message">
+                <ee:message >
+                    <ee:set-payload ><![CDATA["Hello, " ++ (vars.name default 'World') ++ "!"]]></ee:set-payload>
+                </ee:message>
+            </ee:transform>
+        </body>
+        <output type="string" doc:description="Payload's output"/>
+    </operation>
+
+</module>
